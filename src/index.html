@@ -29,9 +29,9 @@
     };
     firebase.initializeApp(config);
 
-    const root = firebase.database().ref();
+    const root = firebase.database().ref('messages/2');
     root.on('value', snap => {
-      console.log(snap.val());
+      console.log(snap.key, snap.val());
     })
   </script>
 </body>
