@@ -16,11 +16,11 @@ export class AppComponent {
 
   constructor(private af: AngularFire) {
 
-   const courses$: FirebaseListObservable<any> =af.database.list('courses');
+   const courses$: FirebaseListObservable<any> = af.database.list('courses');
 
-   courses$.subscribe(
-     val => console.log(val)
-   );
+   const course$ = af.database.object('courses/-Kao_VFAS9ETnBPXjD7E');
+
+   course$.subscribe(console.log);
 
   }
 }
