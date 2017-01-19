@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import {FirebaseListObservable} from 'angularfire2/database';
+import {AngularFire} from 'angularfire2';
+import {root} from '../../node_modules/rxjs/src/util/root';
+import {Component} from '@angular/core';
 import { initializeApp, database } from 'firebase';
+
+import {firebaseConfig} from '../environments/firebase.config';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +14,13 @@ import { initializeApp, database } from 'firebase';
 export class AppComponent {
   title = 'app works!';
 
-  constructor() {
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyApm-N_4fD_KRqme0XMnYJOmunHV1W3jJ4",
-      authDomain: "finalproject-7b759.firebaseapp.com",
-      databaseURL: "https://finalproject-7b759.firebaseio.com",
-      storageBucket: "finalproject-7b759.appspot.com",
-      messagingSenderId: "459964997051"
-    };
-    initializeApp(config);
+  constructor(private af: AngularFire) {
 
-    const root = database().ref('testArray');
-    root.on('value', snap => {
-      console.log(snap.val());
-    })
+   const courses$: FirebaseListObservable<any> =af.database.list('courses');
+
+   courses$.subscribe(
+     val => console.log(val)
+   );
+
   }
 }

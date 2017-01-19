@@ -9,8 +9,6 @@ export const firebaseConfig = {
     messagingSenderId: "459964997051"
 };
 
-
-
 export const authConfig = {
     provider: AuthProviders.Password,
     method: AuthMethods.Password
