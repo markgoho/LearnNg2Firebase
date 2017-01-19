@@ -20,9 +20,9 @@ export class AppComponent {
     };
     initializeApp(config);
 
-    const root = database().ref('messages/2');
+    const root = database().ref('testArray');
     root.on('value', snap => {
-      console.log(snap.key, snap.val());
+      console.log(snap.val());
     })
   }
 }
