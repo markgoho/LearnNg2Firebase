@@ -1,4 +1,4 @@
-import {FirebaseListObservable} from 'angularfire2/database';
+import {FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {AngularFire} from 'angularfire2';
 import {root} from '../../node_modules/rxjs/src/util/root';
 import {Component} from '@angular/core';
@@ -14,13 +14,25 @@ import {firebaseConfig} from '../environments/firebase.config';
 export class AppComponent {
   title = 'app works!';
 
+  courses$: FirebaseListObservable<any>;
+  lesson$: FirebaseObjectObservable<any>;
+
   constructor(private af: AngularFire) {
 
-   const courses$: FirebaseListObservable<any> = af.database.list('courses');
+    this.courses$ = af.database.list('courses');
+    this.courses$.subscribe(console.log);
 
-   const course$ = af.database.object('courses/-Kao_VFAS9ETnBPXjD7E');
-
-   course$.subscribe(console.log);
-
+    this.lesson$ = af.database.object('lessons/-Kao_VFFXJm9yc27b8XL');
+    this.lesson$.subscribe(console.log);
+   
   }
+
+  listPush() {
+    this.courses$.push({description: 'New Course'})
+      .then(
+        () => console.log('List push done'),
+        console.error
+      );
+  }
+
 }
