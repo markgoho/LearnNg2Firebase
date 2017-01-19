@@ -30,7 +30,7 @@ export class AppComponent {
     this.courses$.map(courses => courses[0])
       .subscribe(
         course => this.firstCourse = course
-      )
+      );
    
   }
 
@@ -50,4 +50,15 @@ export class AppComponent {
     this.courses$.update(this.firstCourse, {description: 'Angular 2 HTTP'})
   }
 
+  objUpdate() {
+    this.lesson$.update({description: 'New description!'});
+  }
+  
+  objSet() {
+    this.lesson$.set({description: 'New description!'});
+  }
+
+  objRemove() {
+    this.lesson$.remove();
+  }
 }
