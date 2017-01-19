@@ -3,6 +3,7 @@ import {AngularFire} from 'angularfire2';
 import {root} from '../../node_modules/rxjs/src/util/root';
 import {Component} from '@angular/core';
 import { initializeApp, database } from 'firebase';
+import 'rxjs/add/operator/map';
 
 import {firebaseConfig} from '../environments/firebase.config';
 
@@ -16,6 +17,7 @@ export class AppComponent {
 
   courses$: FirebaseListObservable<any>;
   lesson$: FirebaseObjectObservable<any>;
+  firstCourse: any;
 
   constructor(private af: AngularFire) {
 
@@ -24,6 +26,11 @@ export class AppComponent {
 
     this.lesson$ = af.database.object('lessons/-Kao_VFFXJm9yc27b8XL');
     this.lesson$.subscribe(console.log);
+
+    this.courses$.map(courses => courses[0])
+      .subscribe(
+        course => this.firstCourse = course
+      )
    
   }
 
@@ -33,6 +40,10 @@ export class AppComponent {
         () => console.log('List push done'),
         console.error
       );
+  }
+
+  listRemove() {
+    this.courses$.remove(this.firstCourse);
   }
 
 }
