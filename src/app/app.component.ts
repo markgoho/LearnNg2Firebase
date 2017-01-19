@@ -15,50 +15,50 @@ import {firebaseConfig} from '../environments/firebase.config';
 export class AppComponent {
   title = 'app works!';
 
-  courses$: FirebaseListObservable<any>;
-  lesson$: FirebaseObjectObservable<any>;
-  firstCourse: any;
+  // courses$: FirebaseListObservable<any>;
+  // lesson$: FirebaseObjectObservable<any>;
+  // firstCourse: any;
 
-  constructor(private af: AngularFire) {
+  // constructor(private af: AngularFire) {
 
-    this.courses$ = af.database.list('courses');
-    this.courses$.subscribe(console.log);
+  //   this.courses$ = af.database.list('courses');
+  //   this.courses$.subscribe(console.log);
 
-    this.lesson$ = af.database.object('lessons/-Kao_VFFXJm9yc27b8XL');
-    this.lesson$.subscribe(console.log);
+  //   this.lesson$ = af.database.object('lessons/-Kao_VFFXJm9yc27b8XL');
+  //   this.lesson$.subscribe(console.log);
 
-    this.courses$.map(courses => courses[0])
-      .subscribe(
-        course => this.firstCourse = course
-      );
+  //   this.courses$.map(courses => courses[0])
+  //     .subscribe(
+  //       course => this.firstCourse = course
+  //     );
    
-  }
+  // }
 
-  listPush() {
-    this.courses$.push({description: 'New Course'})
-      .then(
-        () => console.log('List push done'),
-        console.error
-      );
-  }
+  // listPush() {
+  //   this.courses$.push({description: 'New Course'})
+  //     .then(
+  //       () => console.log('List push done'),
+  //       console.error
+  //     );
+  // }
 
-  listRemove() {
-    this.courses$.remove(this.firstCourse);
-  }
+  // listRemove() {
+  //   this.courses$.remove(this.firstCourse);
+  // }
 
-  listUpdate() {
-    this.courses$.update(this.firstCourse, {description: 'Angular 2 HTTP'})
-  }
+  // listUpdate() {
+  //   this.courses$.update(this.firstCourse, {description: 'Angular 2 HTTP'})
+  // }
 
-  objUpdate() {
-    this.lesson$.update({description: 'New description!'});
-  }
+  // objUpdate() {
+  //   this.lesson$.update({description: 'New description!'});
+  // }
   
-  objSet() {
-    this.lesson$.set({description: 'New description!'});
-  }
+  // objSet() {
+  //   this.lesson$.set({description: 'New description!'});
+  // }
 
-  objRemove() {
-    this.lesson$.remove();
-  }
+  // objRemove() {
+  //   this.lesson$.remove();
+  // }
 }
