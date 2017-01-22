@@ -20,6 +20,9 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
+import {ReactiveFormsModule} from '@angular/forms';
+import { NewLessonComponent } from './new-lesson/new-lesson.component';
+import { LessonFormComponent } from './lesson-form/lesson-form.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +33,17 @@ import { SafeUrlPipe } from './shared/security/safe-url.pipe';
     CoursesComponent,
     CourseDetailComponent,
     LessonDetailComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    NewLessonComponent,
+    LessonFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(routerConfig)
+    RouterModule.forRoot(routerConfig),
+    ReactiveFormsModule
   ],
   providers: [LessonsService, CoursesService],
   bootstrap: [AppComponent]
