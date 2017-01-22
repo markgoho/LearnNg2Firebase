@@ -12,10 +12,14 @@ import {AppComponent} from './app.component';
 import {firebaseConfig} from '../environments/firebase.config';
 import { HomeComponent } from './home/home.component';
 import { LessonsService } from './shared/model/lessons.service';
+import {CoursesService} from './shared/model/courses.service';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import {routerConfig} from './router.config';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { CoursesComponent } from './courses/courses.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
+import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { CoursesComponent } from './courses/courses.component';
     HomeComponent,
     LessonsListComponent,
     TopMenuComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseDetailComponent,
+    LessonDetailComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { CoursesComponent } from './courses/courses.component';
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routerConfig)
   ],
-  providers: [LessonsService],
+  providers: [LessonsService, CoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
