@@ -38,5 +38,8 @@ export class LessonDetailComponent implements OnInit {
     this.router.navigate(['lessons', lesson.url]);
   }
 
+  requestLessonDeletion() {
+    this.lessonsService.requestLessonDeletion(this.lesson.$key, this.lesson.courseId);
+  }
 
 }
