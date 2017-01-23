@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import {AppComponent} from './app.component';
-import {firebaseConfig} from '../environments/firebase.config';
+import {firebaseConfig, authConfig} from '../environments/firebase.config';
 import { HomeComponent } from './home/home.component';
 import { LessonsService } from './shared/model/lessons.service';
 import {CoursesService} from './shared/model/courses.service';
@@ -25,6 +25,10 @@ import { NewLessonComponent } from './new-lesson/new-lesson.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import { EditLessonComponent } from './edit-lesson/edit-lesson.component';
 import {LessonResolver} from './shared/model/lesson.resolver';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthService } from './shared/security/auth.service';
+import { AuthGuard } from './shared/security/auth.guard';
 
 @NgModule({
   declarations: [
@@ -38,17 +42,23 @@ import {LessonResolver} from './shared/model/lesson.resolver';
     SafeUrlPipe,
     NewLessonComponent,
     LessonFormComponent,
-    EditLessonComponent
+    EditLessonComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, authConfig),
     RouterModule.forRoot(routerConfig),
     ReactiveFormsModule
   ],
-  providers: [LessonsService, CoursesService, LessonResolver],
+  providers: [LessonsService,
+              CoursesService,
+              LessonResolver,
+              AuthService,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
