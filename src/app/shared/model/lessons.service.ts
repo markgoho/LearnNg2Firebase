@@ -76,4 +76,14 @@ export class LessonsService {
       );
     return subject.asObservable();
   }
+
+  saveLesson(lessonId:string, lesson) {
+    const lessonToSave = Object.assign({}, lesson);
+    delete(lessonToSave.$key);
+
+    let dataToSave = {};
+    dataToSave[`lessons/${lessonId}`] = lessonToSave;
+
+    return this.firebaseUpdate(dataToSave);
+  }
 }
